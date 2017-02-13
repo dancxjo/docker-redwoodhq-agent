@@ -15,7 +15,10 @@ RUN tar xzvf RedwoodHQAgentLinux_250.tar.gz
 
 WORKDIR /usr/local/RedwoodHQAgent
 
-RUN apt-get update && apt-get install -y x11vnc xvfb firefox chromium-browser fluxbox
+RUN apt-get update && apt-get install -y x11vnc xvfb firefox chromium-browser fluxbox tofrodos
+
+RUN fromdos /usr/local/RedwoodHQAgent/properties.conf
+
 RUN mkdir ~/.vnc
 
 RUN x11vnc -storepasswd $VNC_PASSWORD ~/.vnc/passwd
