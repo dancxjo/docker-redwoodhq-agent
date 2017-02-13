@@ -20,12 +20,7 @@ RUN mkdir ~/.vnc
 
 RUN x11vnc -storepasswd $VNC_PASSWORD ~/.vnc/passwd
 
-RUN bash -c 'echo "cd /usr/local/RedwoodHQAgent/agent \
-sed -i 's/AgentPort=[0-9]*/AgentPort='"$AGENT_PORT"'/' properties.conf \
-sed -i 's/AppServerPort=[0-9]*/AppServerPort='"$APP_SERVER_PORT"'/' properties.conf \
-sed -i 's/AppServerIPHost=.*/AppServerIPHost='"$APP_SERVER_HOST"'/' properties.conf \
-./start.sh \
-exec fluxbox" >> ~/.xinitrc'
+COPY ./xinitrc /root/.xinitrc
 RUN chmod +x ~/.xinitrc
 
 EXPOSE $VNC_PORT
